@@ -1,0 +1,94 @@
+directive @constraint(
+    # String constraints
+    minLength: Int
+    maxLength: Int
+    startsWith: String
+    endsWith: String
+    notContains: String
+    pattern: String
+    format: String
+
+    # Number constraints
+    min: Int
+    max: Int
+    exclusiveMin: Int
+    exclusiveMax: Int
+    multipleOf: Int
+  ) on INPUT_FIELD_DEFINITION
+
+input IntFilter {
+  in: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+}
+
+input FloatFilter {
+  in: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+}
+
+input StringFilter {
+  in: [String]
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+}
+
+input ProductFilter {
+  Name: String
+  Cost: FloatFilter
+}
+
+enum Order {
+  asc
+  desc
+}
+
+input OrderBy {
+  field: String!
+  order: Order!
+}
+
+type Query {
+  products(filter: ProductFilter, skip: Int, take: Int, orderBy: Order, CategoryName: StringFilter): [Product!]
+  product(id: Int!): Product
+  categories(filter: CategoryFilter): [Category!]
+  category(id: Int!): Category
+}
+
+type Product {
+  Product_ID: Int!
+  Name: String! 
+  Description: String! 
+  Image_URL: String! 
+  Cost:Float!
+  Categories: Category!
+}
+
+input ProductInput {
+  Name: String! @constraint(pattern: "^[a-zA-Z]*$", minLength: 3, maxLength: 20)
+  Description: String! @constraint(pattern: "^[a-zA-Z]*$", minLength: 3, maxLength: 20)
+  Image_URL: String! @constraint(pattern: "^[a-zA-Z]*$")
+  Cost:Float!
+  Categories: [CategoryInput]
+}
+
+type Category {
+  Category_ID: Int!
+  Name: String!
+}
+
+
+input CategoryFilter {
+  Name: StringFilter
+}
+
+input CategoryInput {
+  Name: String! @constraint(minLength: 3, maxLength: 30)
+}

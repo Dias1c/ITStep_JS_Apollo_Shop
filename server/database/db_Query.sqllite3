@@ -1,0 +1,80 @@
+sqlite3
+.open test.db
+.mod box
+.tables
+
+DROP TABLE IF EXISTS Categories;
+CREATE TABLE Categories(
+    Category_ID INTEGER PRIMARY KEY,
+    Name TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS Products;
+CREATE TABLE Products(
+    Product_ID INTEGER PRIMARY KEY,
+    Name TEXT NOT NULL,
+    Description TEXT NOT NULL,
+    Image_URL TEXT NOT NULL,
+    Cost REAL NOT NULL,
+    Category_ID INTEGER NOT NULL,
+    FOREIGN KEY (Category_ID) REFERENCES Categories (Category_ID) 
+);
+
+INSERT INTO Categories (Name) VALUES
+('Электроника'),
+('Комплектуюущие'),
+('Книги'),
+('Техника'),
+('Гаджеты');
+
+INSERT INTO Products (Name, Description, Image_URL, Cost, Category_ID) VALUES
+('Lenovo ThinkBook 15 G2 ITL', '-', 'https://techplaza.kz/image/cache/catalog/Notebooks/Lenovo/Lenovo%20ThinkBook%2015%20G2%20Grey-500x500.jpg', 250000, 1),
+('Lenovo Legion I', '-', 'https://i.ebayimg.com/thumbs/images/g/R74AAOSwbdNf7M95/s-l300.jpg', 250000, 1),
+('Lenovo Legion II', '-', 'https://img.mvideo.ru/Pdb/30029455b.jpg', 300000, 1),
+('Lenovo Legion III', '-', 'https://infocity.az/wp-content/uploads/2021/01/Lenovo-Legion-3-300x300.jpg', 350000, 1),
+('Lenovo Legion IV', '-', 'https://legion.com.bd/wp-content/uploads/2020/10/Lenovo-Legion-Y540-price-in-bd-4-300x300.jpg', 400000, 1),
+('Lenovo Legion V', '-', 'https://itti.com.np/pub/media/catalog/product/cache/c0bb400db441ec67b37045c5a66e35a8/l/e/lenovo-legion-5-gaming-laptop-price-nepal_2.jpg', 450000, 1),
+('Lenovo Legion VI', '-', 'https://vyborcen.com/wp-content/uploads/2021/01/lenovo_legion_5_17.yZyGF_.jpg', 500000, 1),
+('Lenovo Legion VII', '-', 'https://nout.kz/upload/iblock/3b4/6b30e0b998ee29e8ba3ecacd1e14ae16_500.jpg', 800000, 1),
+('PS4 Sony PlayStation 4', '-', 'https://gmedia.playstation.com/is/image/SIEPDC/ps4-pro-image-block-01-en-24jul20?$native--t$', 120000, 1),
+('PS5 Sony PlayStation 5', '-', 'https://super.com.ua/upload/iblock/7c1/7c11963af3e9ccea8d7ec05c0b9d9f86.png', 384000, 1),
+('Dual Shock 4 Black', '-', 'https://sonycenter.kz/image/cache_v/catalog/10.2016/25.10/111/111/DUALSHOCK4_2_01_1473280908__zoom-600x600.png', 25000, 2),
+('Dual Shock 4 White', '-', 'https://sonycenter.kz/image/cache_v/catalog/001_SMARTUM/PS719894759/DUALSHOCK4_2_White_01-zoom-600x600.png', 26000, 2),
+('Dual Shock 4 Red', '-', 'https://sonycenter.kz/image/cache_v/catalog/0717/tovar_v3/DUALSHOCK4_2_MagmaRed_01_1473280901-big-370x370.png', 26000, 2),
+('Dual Sense', '-', 'https://sonycenter.kz/image/cache_v/catalog/kostas/photo/playstation/ps5-dualsense-white/besprovodnoy-kontroller-dualsense-dlya-ps5-white-01-600x600.png', 34000, 2),
+('Apple Magic Mouse', '-', 'https://satelonline.kz/upload/iblock/19f/19fc06f3659d852249fe243c4d8f9230.jpg', 52000, 2),
+('Logitech G203 Lightsync Gaming Mouse', '-', 'https://i5.walmartimages.com/asr/fa41f129-e4ae-4c56-974d-73c78a262d92_1.9c5d671744de78547d4c784c227ec303.jpeg', 14000, 2),
+('Xiaomi Wireless Mouse 2 White', '-', 'https://www.mobitron.kz/upload/iblock/eec/eecb4708364148ee460337bfc2c77108.jpg', 8000, 2),
+('Xiaomi Wireless Mouse 2 Black', '-', 'https://xiaomi-store.kz/templates/yootheme/cache/Xiaomi_Wireless_Mouse_2_Gray-d1caec66.jpeg', 6000, 2),
+('Apple Magic Keyboard', '-', 'https://cdn0.ipoint.kz/AfrOrF3gWeDA6VOlDG4TzxMv39O7MXnF4CXpKUwGqRM/resize:fill:540/bg:f6f6f6/q:100/plain/s3://catalog-products/151014075033502443/151014160020529094.jpg@webp', 69000, 2),
+('Xiaomi Miiiw Wireless Keyboard', '-', 'https://xiaomi-store.kz/images/stories/virtuemart/product/Xiaomi_MIIIW_Bluetooth_Keyboard_White.jpg',  18000, 2),
+('Logitech Pro Keyboard', '-', 'https://resource.logitechg.com/w_695,c_limit,q_auto:best,f_auto,b_rgb:f4f4f4,dpr_2.0/content/dam/gaming/en/products/pro-keyboard/pro-clicky-hero.png?v=1', 65000, 2),
+('Телевизор Samsung', '-', 'https://images.satu.kz/147611160_w300_h300_televizor-led-tv.jpg', 300000, 4),
+('Телевизор Xiaomi', '-', 'https://mi-rush.com/upload/iblock/d64/d649c2569b5c4905661590907ecfa37f.jpg', 150000, 4),
+('Xiaomi Mi Band 1', '-', 'https://ae01.alicdn.com/kf/HTB14lr0NFXXXXcbXVXXq6xXFXXXL/100-Asli-Xiaomi-Mi-Band-1-S-Bluetooth-Pintar-Kebugaran-Gelang-untuk-Android-IOS-Telepon-Getaran.jpg', 9000, 5),
+('Xiaomi Mi Band 2', '-', 'https://img.gkbcdn.com/p/2016-06-03/original-xiaomi-mi-band-2-smart-bracelet-for-android-ios---black-1571978221771._w500_p1_.jpg', 10000, 5),
+('Xiaomi Mi Band 3', '-', 'https://imgproxy.sbermarket.ru/imgproxy/size-500-500/aHR0cHM6Ly9zYmVybWFya2V0LnJ1L3NwcmVlL3Byb2R1Y3RzLzQ3Mzc3Ni9vcmlnaW5hbC80MzM0MDEuanBnPzE2MjQ5NTgyMTM.jpg', 11000, 5),
+('Xiaomi Mi Band 4', '-', 'http://sun9-46.userapi.com/impg/-JkgApDI5lun5-lguAKsxNFB8ht8NVHX3fRimw/RnRp1wWvOCQ.jpg?size=500x500&quality=96&sign=f43b8e01c1c85cc90b0e29cfb92449e6&type=album', 12000, 5),
+('Xiaomi Mi Band 5', '-', 'https://fora.kz/images/content/products/616657/xiaomi-mi-smart-band-5-xmsh10hm-black_5f151a84d7294.jpg', 16000, 5),
+('Xiaomi Mi Band 6', '-', 'https://www.technodom.kz/media/catalog/product/cache/1366e688ed42c99cd6439df4031862c6/f/9/f9baa85314f6c637973d5600b9b18295085f8a83_244565_1.jpg', 19000, 5),
+('Сердца трех', '-', 'https://cdn.f.kz/prod/491/490135_550.jpg', 920, 3),
+('Самый богатый человек в Вавилоне', '-', 'https://img4.labirint.ru/rc/60407294ff3a33ff87b442f8009a251e/220x340/books43/420744/cover.jpg?1577539504', 1200, 3),
+('Кровь пот и пиксели', '-', 'https://cdn.f.kz/prod/1252/1251703_550.jpg', 3200, 3),
+('Цветы для Элджерона', '-', 'https://img2.labirint.ru/rcimg/415ca94f92747bb20f1ad1a352c40523/960x540/books33/324880/ph_001.jpg?1612704304', 1900, 3),
+('Над пропастью во ржи', '-', 'https://www.rahvaraamat.ee/images/products/000/460/084/thumbnails/big/6468c714eb0ba2c668db778f1de4b9b1f09bed6a/%D0%BD%D0%B0%D0%B4-%D0%BF%D1%80%D0%BE%D0%BF%D0%B0%D1%81%D1%82%D1%8C%D1%8E-%D0%B2%D0%BE-%D1%80%D0%B6%D0%B8.jpg', 580, 3);
+
+.tables
+SELECT * FROM Categories;
+SELECT * FROM Products;
+
+
+
+
+-- type Mutation {
+--   createUser(input: UserInput): User
+--   updateUser(id: Int!, input: UserInput): User
+--   deleteUser(id: Int!): User
+--   createPost(input: PostInput): Post
+--   updatePost(id: Int!,input: PostInput): Post
+--   deletePost(id: Int!): Post
+-- }
